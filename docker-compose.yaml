@@ -13,8 +13,10 @@ services:
     tty: true
     depends_on:
       - db
-    command: npm install
-    command: node index.js
+    command: >
+      bash -c "
+             npm install && 
+             node index.js"
   db:
     image: mysql:5.7
     command: --innodb-use-native-aio=0
