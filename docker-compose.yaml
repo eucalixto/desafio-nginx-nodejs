@@ -13,6 +13,7 @@ services:
     tty: true
     depends_on:
       - db
+    command: npm install
     command: node index.js
   db:
     image: mysql:5.7
@@ -21,6 +22,7 @@ services:
     restart: always
     tty: true
     volumes:
+      - ./mysql/scripts/initialization.sql:/docker-entrypoint-initdb.d/1.sql
       - ./mysql/data:/var/lib/mysql
     environment:
       - MYSQL_DATABASE=nodedb
